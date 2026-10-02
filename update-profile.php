@@ -3,15 +3,15 @@
 session_start();
 include "connection.php";
 
-// Hakikisha ni student
+// kumuhakiki student
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student') {
-    header("Location: index.php");
+    header("Location: index.php");  //student-dashboard.php
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
 
-// Pata taarifa za student
+
 $sql = "SELECT * FROM students
         WHERE user_id = '$user_id'";
 
@@ -29,7 +29,7 @@ if (mysqli_num_rows($result) == 1) {
 }
 
 
-// Update profile
+// Update profile ya student
 if (isset($_POST['update'])) {
 
     $first_name = $_POST['first_name'];

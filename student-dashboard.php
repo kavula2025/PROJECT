@@ -18,6 +18,17 @@ $result = mysqli_query($connection, $sql);
 
 $student = mysqli_fetch_assoc($result);
 
+$sql_courses = "SELECT courses.course_code,
+                       courses.course_name,
+                       courses.description,
+                       registrations.registration_date
+                FROM registrations
+                JOIN courses
+                ON registrations.course_id = courses.id
+                WHERE registrations.student_id = '$student[id]'";
+
+$result_courses = mysqli_query($connection, $sql_courses);
+
 ?>
 
 <!DOCTYPE html>
@@ -108,12 +119,50 @@ $student = mysqli_fetch_assoc($result);
 
             <br>
 
+            <h2>My Courses</h2>
+
+<table>
+
+    <tr>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Registration Date</th>
+    </tr>
+
+    <?php while ($course = mysqli_fetch_assoc($result_courses)) { ?>
+
+    <tr>
+
+        <td>
+            <?php echo $course['course_code']; ?>
+        </td>
+
+        <td>
+            <?php echo $course['course_name']; ?>
+        </td>
+
+        <td>
+            <?php echo $course['description']; ?>
+        </td>
+
+        <td>
+            <?php echo $course['registration_date']; ?>
+        </td>
+
+    </tr>
+
+    <?php } ?>
+
+</table>
+        </div><br>
+            <div>
             <a href="update-profile.php" class="button">
                 Update Profile
             </a>
+            </div>
 
-        </div>
-
+         
     </div>
 
 </div>
