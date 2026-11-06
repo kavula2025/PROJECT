@@ -56,10 +56,10 @@
         <div class="labels">
 
             <label for="username">Username</label>
-            <input type="text" name="username" id="email" placeholder="">
+            <input type="text" name="username" id="email" >
 
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="">
+            <input type="password" name="password" id="password" >
         </div>
         <button type="submit" name="login">Login</button>
         </form>

@@ -17,6 +17,7 @@ $result = mysqli_query($connection, $sql);
 <!DOCTYPE html>
 <html>
 
+
 <head>
 
     <title>Student List</title>
@@ -24,6 +25,46 @@ $result = mysqli_query($connection, $sql);
     <link rel="stylesheet" href="style2.css">
 
     <style>
+
+        .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+}
+
+body{
+    padding-top: 20px;
+}
+
+.logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 9px 15px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: #007bff;
+}
         /* ACTION BUTTONS */
 .action-box {
     display: flex;
@@ -77,11 +118,96 @@ $result = mysqli_query($connection, $sql);
     background-color: #b02a37;
 }
 
+/* VERIFY BUTTON */
+.verify-btn {
+    background-color: #6f42c1;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.verify-btn:hover {
+    background-color: #59339d;
+}
+
+
+/* ACTION BUTTONS */
+
+.action-btn {
+    display: inline-block;
+    padding: 7px 12px;
+    margin: 2px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* VERIFY */
+.verify-btn {
+    background-color: #28a745;
+}
+
+.verify-btn:hover {
+    background-color: #218838;
+}
+
+/* UNVERIFY */
+.unverify-btn {
+    background-color: #f39c12;
+}
+
+.unverify-btn:hover {
+    background-color: #d68910;
+}
+
+/* EDIT */
+.edit-btn {
+    background-color: #007bff;
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* DELETE */
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
     </style>
 
 </head>
 
 <body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        Student Registration System
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#dashboard">Dashboard</a>
+
+        <a href="student-list.php">Students</a>
+
+        <a href="course-list.php">Courses</a>
+
+        <a href="logout.php">Logout</a>
+
+    </div>
+
+</nav>
 
 <div class="container">
 
@@ -145,22 +271,23 @@ $result = mysqli_query($connection, $sql);
             <?php echo $student['status']; ?>
         </td>
 
-         <!-- ACTION -->
 <!-- ACTION -->
+
 <td class="action-box">
 
-    <?php if ($student['status'] == 'inactive') { ?>
+    <?php if ($student['status'] == 'unverified') { ?>
 
-        <a href="confirm-student.php?id=<?php echo $student['id']; ?>"
-           class="action-btn confirm-btn">
-            Confirm
+        <a href="verify-student.php?id=<?php echo $student['id']; ?>"
+           class="action-btn verify-btn">
+            Verify
         </a>
 
     <?php } else { ?>
 
-        <span class="action-btn active-btn">
-            Active
-        </span>
+        <a href="verify-student.php?id=<?php echo $student['id']; ?>"
+           class="action-btn unverify-btn">
+            Unverify
+        </a>
 
     <?php } ?>
 

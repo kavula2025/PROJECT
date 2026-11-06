@@ -83,7 +83,7 @@ CREATE TABLE `students` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `student_id` varchar(50) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL, 
   `last_name` varchar(100) NOT NULL,
   `gender` varchar(20) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,

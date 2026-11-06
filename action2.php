@@ -24,7 +24,7 @@ if (isset($_POST['login'])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
 
-            // Check role
+           
             if ($user['role'] == 'admin') {
                 header("Location: admin-dashboard.php");
                 exit();

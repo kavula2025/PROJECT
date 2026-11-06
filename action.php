@@ -16,7 +16,7 @@ if (isset($_POST['register'])) {
     $email = $_POST['email'];
     $address = $_POST['address'];
 
-    // Check if student selected courses
+
     if (!isset($_POST['courses'])) {
         echo "Please select at least one course";
         exit();
@@ -25,7 +25,6 @@ if (isset($_POST['register'])) {
     $courses = $_POST['courses'];
 
 
-    // 1. Insert into users
     $sql1 = "INSERT INTO users
              (username, password, role)
              VALUES
@@ -33,11 +32,8 @@ if (isset($_POST['register'])) {
 
     if (mysqli_query($connection, $sql1)) {
 
-        // Get user ID
         $user_id = mysqli_insert_id($connection);
 
-
-        // 2. Insert into students
         $sql2 = "INSERT INTO students
                 (user_id, student_id, first_name, last_name,
                  gender, date_of_birth, phone, email, address)
